@@ -1,10 +1,6 @@
 package simstation;
 
-import mvc.AppFactory;
-import mvc.Command;
-import mvc.Model;
-import mvc.View;
-import stopLight.ChangeCommand;
+import mvc.*;
 
 public abstract class SimulationFactory implements AppFactory {
     @Override
@@ -12,7 +8,7 @@ public abstract class SimulationFactory implements AppFactory {
 
     @Override
     public View makeView(Model m) {
-        return new SimulationView(m);
+        return new SimulationView((Simulation) m);
     }
 
     @Override

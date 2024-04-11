@@ -24,6 +24,10 @@ public class Simulation extends Model {
         }
     }
 
+    protected void addAgent(Agent agent) {
+
+    }
+
     // etc.
 
 }

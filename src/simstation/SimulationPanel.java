@@ -16,22 +16,21 @@ public class SimulationPanel extends AppPanel {
     public SimulationPanel(AppFactory factory) {
         super(factory);
 
-        ControlPanel.setLayout(new GridLayout(5,2,10, 25));
         start = new JButton("Start");
         start.addActionListener(this);
-        ControlPanel.add(start);
+        controlPanel.add(start);
         suspend = new JButton("Suspend");
         suspend.addActionListener(this);
-        ControlPanel.add(suspend);
+        controlPanel.add(suspend);
         resume = new JButton("Resume");
         resume.addActionListener(this);
-        ControlPanel.add(resume);
+        controlPanel.add(resume);
         stop = new JButton("Stop");
         stop.addActionListener(this);
-        ControlPanel.add(stop);
+        controlPanel.add(stop);
         stats = new JButton("Stats");
         stats.addActionListener(this);
-        ControlPanel.add(stats);
+        controlPanel.add(stats);
         this.display();
     }
 }

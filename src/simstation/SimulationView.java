@@ -1,22 +1,14 @@
-package mvc;
+package simstation;
+
+import mvc.*;
 
 
-import javax.swing.*;
 
-public class SimulationView extends JPanel implements Subscriber {
+public class SimulationView extends View {
     protected Model model;
 
-    public View() {
-
+    public SimulationView(Model model) {
     }
 
-    public View(Model model) {
-        this.model = model;
-        model.subscribe(this);
-    }
 
-    public void setModel(Model model) {
-        this.model = model;
-        model.subscribe(this);
-    }
 }

@@ -2,7 +2,7 @@ package randomwalk;
 
 import mvc.AppFactory;
 import mvc.AppPanel;
-import simstation.*
+import simstation.*;
 
 import javax.swing.*;
 import java.awt.*;
