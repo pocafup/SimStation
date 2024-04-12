@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1af077c7-c854-4ac4-a3ea-bb1c2c618546" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/mvc/AppFactory.java" afterDir="false" />
+    <list default="true" id="1af077c7-c854-4ac4-a3ea-bb1c2c618546" name="Changes" comment="Agent and Run Commands&#10;not too confident in the code but ill make any changes if i have to">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StartCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/StatsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StatsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/StopCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StopCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simstation/SuspendCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/SuspendCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +32,26 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dumly55&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pocafup/SimStation.git&quot;,
+    &quot;accountId&quot;: &quot;a9b023aa-fc7d-4370-abaf-96eafe401d7e&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2evCbtpqmLXT0mrju7CJvD3L00G" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -41,26 +60,25 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.RandomWalkSimulation.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Miko",
+    "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/tonth/IdeaProjects/SimStation",
-    "onboarding.tips.debug.path": "C:/Users/tonth/IdeaProjects/SimStation/src/Main.java"
+    "last_opened_file_path": "E:/VSCode projects/CS151Hw3/cs151_CA_project/v0/SimStation",
+    "onboarding.tips.debug.path": "C:/Users/tonth/IdeaProjects/SimStation/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tonth\IdeaProjects\SimStation" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,5 +90,9 @@
       <updated>1712775751554</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Agent and Run Commands&#10;not too confident in the code but ill make any changes if i have to" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agent and Run Commands&#10;not too confident in the code but ill make any changes if i have to" />
   </component>
 </project>

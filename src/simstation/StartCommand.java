@@ -6,6 +6,7 @@ import mvc.Model;
 public class StartCommand extends Command {
 
     private Model model;
+
     public StartCommand(Model m) {
         super(m);
         model = m;
@@ -13,6 +14,9 @@ public class StartCommand extends Command {
 
     @Override
     public void execute() {
-
+        if (model instanceof Simulation) {
+            ((Simulation) model).start();
+        }
     }
 }
+
