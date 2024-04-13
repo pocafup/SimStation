@@ -18,8 +18,8 @@ public abstract class Agent implements Runnable, Serializable {
 
     public Agent(Model model) {
         this.heading = Heading.random(); // Assign a random heading
-        this.xc = Utilities.rng.nextInt(); // Example usage, needs proper range
-        this.yc = Utilities.rng.nextInt(); // Example usage, needs proper range
+        this.xc = Utilities.rng.nextInt()%400; // Example usage, needs proper range
+        this.yc = Utilities.rng.nextInt()%500; // Example usage, needs proper range
         SimStation = (Simulation) model;
     }
 
