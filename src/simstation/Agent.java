@@ -1,6 +1,7 @@
 package simstation;
 
 // Assuming Heading is an enum already defined somewhere
+import mvc.Model;
 import mvc.Utilities;
 
 import java.io.Serializable;
@@ -9,15 +10,17 @@ public abstract class Agent implements Runnable, Serializable {
 
     private String name;
     protected Heading heading;
-    private int xc, yc; // Presumably for coordinates, but not shown in your diagram
+    public int xc, yc; // Presumably for coordinates, but not shown in your diagram
     private boolean suspended = false;
     private boolean stopped = false;
     private transient Thread myThread; // Transient because Threads are not serializable
+    public Simulation SimStation;
 
-    public Agent() {
+    public Agent(Model model) {
         this.heading = Heading.random(); // Assign a random heading
         this.xc = Utilities.rng.nextInt(); // Example usage, needs proper range
         this.yc = Utilities.rng.nextInt(); // Example usage, needs proper range
+        SimStation = (Simulation) model;
     }
 
 
@@ -25,7 +28,15 @@ public abstract class Agent implements Runnable, Serializable {
     public String getName() {
         return name;
     }
-
+    private synchronized void checkSuspended() {
+        try {
+            while (!stopped && suspended) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            // Handle interruption
+        }
+    }
     public synchronized void start() {
         stopped = false;
         suspended = false;
@@ -67,14 +78,16 @@ public abstract class Agent implements Runnable, Serializable {
 
     @Override
     public void run() {
-        while (!stopped) {
-            if (!suspended) {
+        myThread = Thread.currentThread();
+        while (!isStopped()) {
+            if (!isSuspended()) {
                 update();
             }
             try {
                 Thread.sleep(20); // Sleep time can be adjusted or made dynamic
+                checkSuspended();
             } catch (InterruptedException e) {
-                // May need to check conditions again if interrupted
+                // Check if the thread was interrupted to stop
             }
         }
     }
@@ -86,8 +99,23 @@ public abstract class Agent implements Runnable, Serializable {
                 ((stopped) ? "stopped" : (suspended) ? "suspended" : "running") + ")";
     }
 
-    protected void move(int steps) {
-
+    public void move(int steps) {
+        Agent Neighbor = SimStation.getNeighbors(this,10);
+        if(Neighbor!=null) heading = Neighbor.heading;
+        switch (heading) {
+            case NORTH:
+                yc -= steps; // Assuming the upper part of the screen is "North", subtract from y to move up
+                break;
+            case SOUTH:
+                yc += steps; // Add to y to move down
+                break;
+            case EAST:
+                xc += steps; // Add to x to move right
+                break;
+            case WEST:
+                xc -= steps; // Subtract from x to move left
+                break;
+        }
     }
 
     // Implement other methods such as move(steps: int) and getters for heading, xc, yc as necessary.
