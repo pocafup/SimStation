@@ -3,10 +3,13 @@ package simstation;
 import java.util.*;
 import mvc.*;
 
-public abstract class Simulation extends Model {
+public class Simulation extends Model {
 
-    private List<Agent> world = new ArrayList<>();
+    private List<Agent> world;
     private Timer timer;
+    private int clock;
+    private long elapsedTimeMillis;
+    private long startTime;
 
     public List<Agent> getWorld() {
         return world;
@@ -16,9 +19,12 @@ public abstract class Simulation extends Model {
         world.set(position, agent);
     }
 
-    public abstract void populate();
+    public void populate(){
+
+    };
 
     public void start() {
+        world = new ArrayList<>();
         populate();
         for(Agent agent : world){
             agent.start();
@@ -30,14 +36,14 @@ public abstract class Simulation extends Model {
         for(Agent agent : world){
             agent.suspend();
         }
-        stopTimer();
+        suspendTimer();
     }
 
     public void resume() {
         for(Agent agent : world){
             agent.resume();
         }
-        startTimer();
+        resumeTimer();
     }
 
     public void stop() {
@@ -65,22 +71,44 @@ public abstract class Simulation extends Model {
     }
 
     private void startTimer() {
-        if (timer == null) {
-            timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    changed();
-                }
-            }, 0, 20); // Notify subscribers every 20 milliseconds
-        }
+        if (timer == null)  timer = new Timer();
+        elapsedTimeMillis = 0;
+        startTime = System.currentTimeMillis();
+        resumeTimer();
     }
 
     private void stopTimer() {
         if (timer != null) {
             timer.cancel();
+            elapsedTimeMillis = 0;
             timer = null;
         }
+    }
+    private void suspendTimer() {
+        if (timer != null) {
+            this.elapsedTimeMillis = System.currentTimeMillis() - startTime;
+            timer = null;
+        }
+    }
+    private void resumeTimer() {
+        if (timer == null)  timer = new Timer();
+        startTime = System.currentTimeMillis();
+        timer.scheduleAtFixedRate(new TimerTask () {
+            @Override
+            public void run() {
+                clock = (int)getClock();
+                changed();
+            }
+        }, 0, 20); // Notify subscribers every 20 milliseconds
+
+    }
+    public long getClock() {
+        if (timer != null) {
+            long elapsedTimeMillis = this.elapsedTimeMillis + System.currentTimeMillis() - startTime;
+            return (elapsedTimeMillis + 999) / 1000;
+        }
+        return (elapsedTimeMillis+999)/1000;
+
     }
 
 }
