@@ -3,12 +3,13 @@ package simstation;
 import java.util.*;
 import mvc.*;
 
-public class Simulation extends Model {
+public abstract class Simulation extends Model {
 
     transient private Timer timer; // timers aren't serializable (wasn't sure what this is for but il leave)
     private int clock;
     //not static
-    protected List<Agent> world;
+    protected List<Agent> world = new ArrayList<Agent>();
+
 
     public List<Agent> getWorld() {
         return world;
@@ -16,11 +17,9 @@ public class Simulation extends Model {
     public void setAgent(int position, Agent agent){
         world.set(position,agent);
     }
-    public void populate(){
-
-    }
+    public abstract void populate();
     // I don't think we need these
-    // I think populate will deal with time. 
+    // I think populate will deal with time.
     // Since populate will be overwritten in the individual projects I don't really have to deal with time rn
 //    private void startTimer() {
 //        timer = new Timer();
@@ -33,10 +32,13 @@ public class Simulation extends Model {
 //    }
 //
     public void start() {
+        if (world.isEmpty()) {
+            populate();
+        }
         for(Agent v : world){
             v.start();
         }
-        populate();
+        notifySubscribers();
     }
     public void suspend() {
         for(Agent v : world){
@@ -55,7 +57,7 @@ public class Simulation extends Model {
     }
 
     public double distance(Agent a, Agent b){
-        return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+        return Math.sqrt(Math.pow(a.xc - b.xc, 2) + Math.pow(a.yc - b.yc, 2));
     }
     public Agent getNeighbors(Agent agent, int radius){
         for (Agent a : world){
