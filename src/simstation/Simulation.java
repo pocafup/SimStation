@@ -19,9 +19,7 @@ public abstract class Simulation extends Model {
     public abstract void populate();
 
     public void start() {
-        if (world.isEmpty()) {
-            populate();
-        }
+        populate();
         for(Agent agent : world){
             agent.start();
         }
@@ -72,7 +70,7 @@ public abstract class Simulation extends Model {
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    notifySubscribers();
+                    changed();
                 }
             }, 0, 20); // Notify subscribers every 20 milliseconds
         }
