@@ -2,6 +2,7 @@ package simstation;
 
 import mvc.Command;
 import mvc.Model;
+import plague.PlagueSimulation;
 
 import javax.swing.*;
 
@@ -13,9 +14,17 @@ public class StatsCommand extends Command {
     @Override
     public void execute() {
         Simulation SimStation = (Simulation)model;
+        if(SimStation.getWorld()==null){
+            JOptionPane.showMessageDialog(null,
+                    "Simulation haven't start", "Message", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String msg = "#agents = "+ SimStation.getWorld().size()+
+                "\nclock = " + SimStation.getClock();
+        if (model instanceof PlagueSimulation) {
+            msg += "\n#infected = " + ((PlagueSimulation)model).getInfected();
+        }
         JOptionPane.showMessageDialog(null,
-                "#agents = "+ SimStation.getWorld().size()+
-                        "\nclock = " + SimStation.getClock(),
-                    "Message", JOptionPane.INFORMATION_MESSAGE);
+                        msg, "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 }
