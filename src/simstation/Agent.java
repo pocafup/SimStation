@@ -4,6 +4,7 @@ package simstation;
 import mvc.Model;
 import mvc.Utilities;
 
+import java.awt.*;
 import java.io.Serializable;
 
 public abstract class Agent implements Runnable, Serializable {
@@ -14,22 +15,17 @@ public abstract class Agent implements Runnable, Serializable {
     private boolean suspended = false;
     private boolean stopped = false;
     private transient Thread myThread; // Transient because Threads are not serializable
-
-    protected Agent neighbor = null;
-
-    private static int MAX_XC = 400;
-    private static int MAX_YC = 500;
-
-
     public Simulation SimStation;
+    public final int xOffset = 395;
+    public final int yOffset = 440;
 
     public Agent(Model model) {
         this.heading = Heading.random(); // Assign a random heading
-        this.xc = Math.abs(Utilities.rng.nextInt() % MAX_XC); // Ensure xc is positive
-        this.yc = Math.abs(Utilities.rng.nextInt() % MAX_YC); // Ensure yc is positive
+        this.xc = Utilities.rng.nextInt()%xOffset; // Example usage, needs proper range
+        this.yc = Utilities.rng.nextInt()%yOffset; // Example usage, needs proper range
         SimStation = (Simulation) model;
-        System.out.println("xc: " + xc + "    yc: " + yc);
     }
+
 
 
     public String getName() {
@@ -107,25 +103,26 @@ public abstract class Agent implements Runnable, Serializable {
     }
 
     public void move(int steps) {
-        if(neighbor!=null) heading = neighbor.heading;
+        Agent Neighbor = SimStation.getNeighbors(this,10);
+        if(Neighbor!=null) heading = Neighbor.heading;
         switch (heading) {
             case NORTH:
-                yc -= steps; // Assuming the upper part of the screen is "North", subtract from y to move up
-                yc = yc < 0 ? MAX_YC + yc : yc;
+                yc = (yc-steps+yOffset)%yOffset; // Assuming the upper part of the screen is "North", subtract from y to move up
                 break;
             case SOUTH:
-                yc += steps; // Add to y to move down
-                yc = yc > 400 ? yc - MAX_YC : yc;
+                yc = (yc+steps+yOffset)%yOffset; // Add to y to move down
                 break;
             case EAST:
-                xc += steps; // Add to x to move right
-                xc = xc > 400 ? xc - MAX_XC : xc;
+                xc = (xc+steps+xOffset)%xOffset; // Add to x to move right
                 break;
             case WEST:
-                xc -= steps; // Subtract from x to move left
-                xc = xc < 0 ? MAX_XC + xc : xc;
+                xc = (xc-steps+xOffset)%xOffset; // Subtract from x to move left
                 break;
         }
+    }
+
+    public Color getColor() {
+        return Color.WHITE; // Example usage, needs to be implemented
     }
 
     // Implement other methods such as move(steps: int) and getters for heading, xc, yc as necessary.
