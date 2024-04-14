@@ -1,8 +1,11 @@
 package plague;
 
 import mvc.AppPanel;
+import simstation.Agent;
 import simstation.Simulation;
 import simstation.SimulationPanel;
+
+import java.awt.*;
 
 public class PlagueSimulation extends Simulation {
     public static int VIRULENCE = 10; // % chance of infection
@@ -17,4 +20,16 @@ public class PlagueSimulation extends Simulation {
         panel.display();
     }
 
+    public String getInfected() {
+        int infected = 0;
+        for (Agent a : getWorld()){
+            Plague v = (Plague) a;
+            if (v.status == Color.RED){
+                infected++;
+            }
+        }
+        double result = infected*100.0/getWorld().size();
+        String formattedResult = String.format("%.1f", result);
+        return formattedResult + "%";
+    }
 }

@@ -8,12 +8,16 @@ class PlagueFactory extends SimulationFactory {
 
     @Override
     public String getHelp() {
-        return null;
+        return "Start Command: Start the simulation\n" +
+                "Suspend Command: Pause the simulation\n" +
+                "Resume Command: Resume the simulation\n" +
+                "Stop Command: Stop the simulation\n" +
+                "Stats Command: Display the statistics of the simulation\n";
     }
 
     @Override
     public String about() {
-        return null;
+        return "Spread the plague";
     }
 
     public String getTitle() { return "Plague";}
