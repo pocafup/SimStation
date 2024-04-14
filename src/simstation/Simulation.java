@@ -8,6 +8,8 @@ public abstract class Simulation extends Model {
     private List<Agent> world = new ArrayList<>();
     private Timer timer;
 
+    private long startTime;
+
     public List<Agent> getWorld() {
         return world;
     }
@@ -66,6 +68,7 @@ public abstract class Simulation extends Model {
 
     private void startTimer() {
         if (timer == null) {
+            startTime = System.currentTimeMillis();
             timer = new Timer();
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
@@ -80,6 +83,15 @@ public abstract class Simulation extends Model {
         if (timer != null) {
             timer.cancel();
             timer = null;
+        }
+    }
+
+    public long getClock() {
+        if (timer != null) {
+            long elapsedTimeMillis = System.currentTimeMillis() - startTime;
+            return (elapsedTimeMillis + 999) / 1000;
+        } else {
+            return 0;
         }
     }
 
