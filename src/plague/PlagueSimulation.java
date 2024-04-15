@@ -19,10 +19,12 @@ public class PlagueSimulation extends Simulation {
         AppPanel panel = new SimulationPanel(new PlagueFactory());
         panel.display();
     }
+
     @Override
     public String getText() {
         return "\ninfected = " + getInfected();
     }
+
     public String getInfected() {
         int infected = 0;
         for (Agent a : getWorld()){

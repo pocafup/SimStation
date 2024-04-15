@@ -19,9 +19,8 @@ public class StatsCommand extends Command {
                     "Simulation haven't start", "Message", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        String msg = "#agents = "+ SimStation.getWorld().size()+
-                "\nclock = " + SimStation.getClock() + SimStation.getText();
-
+        String msg = "#agents = "+ SimStation.getWorld().size() +
+                     "\nclock = " + SimStation.getClock() + SimStation.getText();
         JOptionPane.showMessageDialog(null,
                         msg, "Message", JOptionPane.INFORMATION_MESSAGE);
     }

@@ -6,7 +6,7 @@ import simstation.*;
 
 class Drunk extends Agent {
 
-    public Drunk(RandomWalkSimulation model) {
+    public Drunk(Model model) {
         super(model);
         heading = Heading.random();
     }
