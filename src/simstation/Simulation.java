@@ -86,7 +86,7 @@ public class Simulation extends Model {
     }
     private void suspendTimer() {
         if (timer != null) {
-            this.elapsedTimeMillis = System.currentTimeMillis() - startTime;
+            this.elapsedTimeMillis += System.currentTimeMillis() - startTime;
             timer = null;
         }
     }
