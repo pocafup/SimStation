@@ -20,10 +20,8 @@ public class StatsCommand extends Command {
             return;
         }
         String msg = "#agents = "+ SimStation.getWorld().size()+
-                "\nclock = " + SimStation.getClock();
-        if (model instanceof PlagueSimulation) {
-            msg += "\n#infected = " + ((PlagueSimulation)model).getInfected();
-        }
+                "\nclock = " + SimStation.getClock() + SimStation.getText();
+
         JOptionPane.showMessageDialog(null,
                         msg, "Message", JOptionPane.INFORMATION_MESSAGE);
     }

@@ -111,4 +111,7 @@ public class Simulation extends Model {
 
     }
 
+    public String getText() {
+        return "";
+    }
 }
