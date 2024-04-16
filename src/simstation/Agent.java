@@ -4,6 +4,7 @@ package simstation;
 import mvc.Model;
 import mvc.Utilities;
 
+import java.awt.*;
 import java.io.Serializable;
 
 public abstract class Agent implements Runnable, Serializable {
@@ -15,11 +16,13 @@ public abstract class Agent implements Runnable, Serializable {
     private boolean stopped = false;
     private transient Thread myThread; // Transient because Threads are not serializable
     public Simulation SimStation;
+    public final int xOffset = 395;
+    public final int yOffset = 440;
 
     public Agent(Model model) {
         this.heading = Heading.random(); // Assign a random heading
-        this.xc = Utilities.rng.nextInt()%400; // Example usage, needs proper range
-        this.yc = Utilities.rng.nextInt()%500; // Example usage, needs proper range
+        this.xc = Utilities.rng.nextInt()%xOffset; // Example usage, needs proper range
+        this.yc = Utilities.rng.nextInt()%yOffset; // Example usage, needs proper range
         SimStation = (Simulation) model;
     }
 
@@ -104,18 +107,22 @@ public abstract class Agent implements Runnable, Serializable {
         if(Neighbor!=null) heading = Neighbor.heading;
         switch (heading) {
             case NORTH:
-                yc -= steps; // Assuming the upper part of the screen is "North", subtract from y to move up
+                yc = (yc-steps+yOffset)%yOffset; // Assuming the upper part of the screen is "North", subtract from y to move up
                 break;
             case SOUTH:
-                yc += steps; // Add to y to move down
+                yc = (yc+steps+yOffset)%yOffset; // Add to y to move down
                 break;
             case EAST:
-                xc += steps; // Add to x to move right
+                xc = (xc+steps+xOffset)%xOffset; // Add to x to move right
                 break;
             case WEST:
-                xc -= steps; // Subtract from x to move left
+                xc = (xc-steps+xOffset)%xOffset; // Subtract from x to move left
                 break;
         }
+    }
+
+    public Color getColor() {
+        return Color.WHITE; // Example usage, needs to be implemented
     }
 
     // Implement other methods such as move(steps: int) and getters for heading, xc, yc as necessary.

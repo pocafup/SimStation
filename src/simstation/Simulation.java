@@ -5,98 +5,114 @@ import mvc.*;
 
 public class Simulation extends Model {
 
-    private transient Timer timer; // Timers aren't serializable
+    private List<Agent> world;
+    private Timer timer;
     private int clock;
-    private List<Agent> agents; // To hold all the agents in the simulation
-    private boolean isRunning; // To track the state of the simulation
+    private long elapsedTimeMillis;
+    private long startTime;
 
-    public Simulation() {
-        clock = 0;
-        agents = Collections.synchronizedList(new ArrayList<>());
-        isRunning = false;
+    public List<Agent> getWorld() {
+        return world;
     }
 
+    public void setAgent(int position, Agent agent){
+        world.set(position, agent);
+    }
+
+    public void populate(){
+
+    };
+
     public void start() {
-        if (!isRunning) {
-            isRunning = true;
-            populate(); // Initialize the agents for the simulation
-            for (Agent a : agents) {
-                a.start(); // Start each agent's thread
-            }
-            startTimer(); // Start the simulation clock
+        world = new ArrayList<>();
+        populate();
+        for(Agent agent : world){
+            agent.start();
         }
+        startTimer();
     }
 
     public void suspend() {
-        for (Agent a : agents) {
-            a.suspend(); // Suspend each agent
+        for(Agent agent : world){
+            agent.suspend();
         }
-        stopTimer(); // Stop the simulation clock
+        suspendTimer();
     }
 
     public void resume() {
-        if (!isRunning) {
-            isRunning = true;
-            for (Agent a : agents) {
-                a.resume(); // Resume each agent
-            }
-            startTimer(); // Start the simulation clock
+        for(Agent agent : world){
+            agent.resume();
         }
+        resumeTimer();
     }
 
     public void stop() {
-        isRunning = false;
-        for (Agent a : agents) {
-            a.stop(); // Stop each agent's thread
+        for(Agent agent : world){
+            agent.stop();
         }
-        stopTimer(); // Stop the simulation clock
+        stopTimer();
+    }
+
+    public double distance(Agent a, Agent b){
+        return Math.sqrt(Math.pow(a.xc - b.xc, 2) + Math.pow(a.yc - b.yc, 2));
+    }
+
+    public Agent getNeighbors(Agent agent, int radius){
+        for (Agent a : world){
+            if (a != agent && distance(a, agent) <= radius){
+                return a;
+            }
+        }
+        return null;
     }
 
     protected void addAgent(Agent agent) {
-        agents.add(agent);
-        if (isRunning) {
-            agent.start(); // If the simulation is running, start the agent immediately
-        }
-    }
-
-    protected Agent getNeighbor(Agent asker, double radius) {
-        // Placeholder for actual implementation
-        // This method would need to check for agents within a certain radius of asker
-        return null; // Should be replaced with actual neighbor finding logic
-    }
-
-    public int getAgentCount() {
-        return agents.size();
-    }
-
-
-    protected void populate() {
-        // To be overridden in subclasses
-    }
-
-    public int getClock() {
-        return clock;
+        world.add(agent);
     }
 
     private void startTimer() {
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new ClockUpdater(), 1000, 1000);
+        if (timer == null)  timer = new Timer();
+        elapsedTimeMillis = 0;
+        startTime = System.currentTimeMillis();
+        resumeTimer();
     }
 
     private void stopTimer() {
         if (timer != null) {
             timer.cancel();
-            timer.purge();
+            elapsedTimeMillis = 0;
             timer = null;
         }
     }
-
-    private class ClockUpdater extends TimerTask {
-        public void run() {
-            clock++;
+    private void suspendTimer() {
+        if (timer != null) {
+            this.elapsedTimeMillis += System.currentTimeMillis() - startTime;
+            timer = null;
         }
     }
+    private void resumeTimer() {
+        if (timer == null)  timer = new Timer();
+        startTime = System.currentTimeMillis();
+        timer.scheduleAtFixedRate(new TimerTask () {
+            @Override
+            public void run() {
+                clock = (int)getClock();
+                changed();
+            }
+        }, 0, 20); // Notify subscribers every 20 milliseconds
 
-    // etc. Implement other methods as necessary for your simulation
+    }
+    public long getClock() {
+        if (timer != null) {
+            long elapsedTimeMillis = this.elapsedTimeMillis + System.currentTimeMillis() - startTime;
+            return (elapsedTimeMillis + 999) / 1000;
+        }
+        return (elapsedTimeMillis+999)/1000;
 
+    }
+
+
+    public String getText() {
+        return "";
+    }
 }

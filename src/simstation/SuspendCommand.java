@@ -5,7 +5,6 @@ import mvc.Model;
 
 public class SuspendCommand extends Command {
     private Model model;
-
     public SuspendCommand(Model m) {
         super(m);
         model = m;
@@ -13,8 +12,7 @@ public class SuspendCommand extends Command {
 
     @Override
     public void execute() {
-        if (model instanceof Simulation) {
-            ((Simulation) model).suspend();
-        }
+        Simulation SimStation = (Simulation)model;
+        SimStation.suspend();
     }
 }
