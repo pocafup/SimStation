@@ -44,8 +44,8 @@ public class Prisoner extends Agent {
             neighbor.cheated = false;
         } else if ( Icooperate ) {
             neighbor.fitness += 5;
-            neighbor.cheated = true;
-            cheated = false;
+            neighbor.cheated = false;
+            cheated = true;
         } else if ( Ucooperate ) {
             fitness += 5;
             cheated = false;
