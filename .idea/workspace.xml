@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1af077c7-c854-4ac4-a3ea-bb1c2c618546" name="Changes" comment="Agent and Run Commands&#10;not too confident in the code but ill make any changes if i have to">
+      <change afterPath="$PROJECT_DIR$/src/flocking/Bird.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flocking/FlockingFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/flocking/FlockingSimulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/StartCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StartCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/StatsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StatsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/StopCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/StopCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simstation/SuspendCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simstation/SuspendCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/Agent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mvc/Simulation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/prisonerdilemma/Prison.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/prisonerdilemma/Prison.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +32,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -60,6 +59,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FlockingSimulation.executor": "Run",
+    "Application.Prison.executor": "Run",
     "Application.RandomWalkSimulation.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -76,6 +77,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="flocking" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tonth\IdeaProjects\SimStation" />
     </key>
