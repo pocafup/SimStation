@@ -24,7 +24,6 @@ public class SimulationView extends View {
         if (agents == null) return;
 
         for (Agent agent: agents) {
-            g.setColor(agent.getColor());   // this method is not yet implemented (may be important for plague)
             g.fillRect(agent.xc, agent.yc, 5, 5);
         }
 
