@@ -1,3 +1,4 @@
+
 package prisonerdilemma;
 
 public class Cheat extends Strategy {
@@ -11,3 +12,4 @@ public class Cheat extends Strategy {
         return false;
     }
 }
+

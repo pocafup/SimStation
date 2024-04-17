@@ -1,8 +1,11 @@
+
 package prisonerdilemma;
 
 import simstation.Agent;
 
-public abstract class Strategy {
+import java.io.Serializable;
+
+public abstract class Strategy implements Serializable {
 
     protected Prisoner strategist;
     public Strategy(Prisoner agent) {
