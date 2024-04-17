@@ -27,4 +27,13 @@ public abstract class SimulationFactory implements AppFactory {
             default -> null;
         };
     }
+
+    @Override
+    public String getHelp() {
+        return "Start Command: Start the simulation\n" +
+                "Suspend Command: Pause the simulation\n" +
+                "Resume Command: Resume the simulation\n" +
+                "Stop Command: Stop the simulation\n" +
+                "Stats Command: Display the statistics of the simulation\n";
+    }
 }
