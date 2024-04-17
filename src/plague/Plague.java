@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 class Plague extends Agent {
-    public Color status = Color.GREEN;
+    public Color status;
     public Plague(Model model) {
         super(model);
         status = (Utilities.rng.nextInt(100) > ((PlagueSimulation)model).VIRULENCE)
