@@ -7,8 +7,6 @@ import simstation.Agent;
 import simstation.Simulation;
 import simstation.SimulationPanel;
 
-import java.awt.*;
-
 public class Prison extends Simulation {
 
     @Override
