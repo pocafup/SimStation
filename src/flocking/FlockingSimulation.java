@@ -12,7 +12,7 @@ import java.util.Map;
 public class FlockingSimulation extends simstation.Simulation {
 
     public void populate() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 50; i++) { //change this for number of birds
             addAgent(new Bird(this));
         }
     }
