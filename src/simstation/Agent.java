@@ -121,9 +121,6 @@ public abstract class Agent implements Runnable, Serializable {
         }
     }
 
-    public Color getColor() {
-        return Color.WHITE; // Example usage, needs to be implemented
-    }
 
     // Implement other methods such as move(steps: int) and getters for heading, xc, yc as necessary.
 }

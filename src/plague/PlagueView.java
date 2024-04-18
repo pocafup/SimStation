@@ -1,21 +1,20 @@
-package simstation;
+package plague;
 
-import mvc.*;
+import mvc.Model;
+import simstation.Agent;
+import simstation.Simulation;
+import simstation.SimulationView;
 
 import java.awt.*;
 import java.util.List;
 
+public class PlagueView extends SimulationView {
 
-public class SimulationView extends View {
-
-
-    public SimulationView(Model model) {
+    public PlagueView(Model model) {
         super(model);
     }
-
     @Override
     protected void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         Color temp = g.getColor();
 
@@ -24,6 +23,7 @@ public class SimulationView extends View {
         if (agents == null) return;
 
         for (Agent agent: agents) {
+            g.setColor(((Plague)agent).getColor());
             g.fillRect(agent.xc, agent.yc, 5, 5);
         }
 
